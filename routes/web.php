@@ -29,3 +29,18 @@ Route::post('todos/create', function () {
     $todos = Todo::all();
     return view('welcome')->with("todos", $todos);
 })->name("todos.create");
+
+Route::post('todos/update', function () {
+
+    $todo = Todo::where("id", request()->id);
+
+    $todo->update([
+        "tache" => request()->tache,
+    ]);
+
+    $todos = Todo::all();
+
+    return view('welcome')->with("todos", $todos);
+})
+     ->name("todos.update");
+

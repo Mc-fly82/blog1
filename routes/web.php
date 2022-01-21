@@ -44,3 +44,14 @@ Route::post('todos/update', function () {
 })
      ->name("todos.update");
 
+Route::post('todos/delete', function () {
+
+    $todo = Todo::where("id", request()->id);
+
+    $todo->delete();
+
+    $todos = Todo::all();
+
+    return view('welcome')->with("todos", $todos);
+})
+     ->name("todos.update");

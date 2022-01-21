@@ -60,4 +60,24 @@ class TodosTest extends TestCase
             "tache" => "aller a l'ecole",
         ]);
     }
+
+    /**
+     * @test
+     * @group TodosTest
+     */
+    public function peut_supprimer_un_todo()
+    {
+
+        $todo = Todo::factory([
+            "tache" => "aller au marche",
+        ])
+                    ->create();
+
+        $this->postJson('todos/delete', [
+            "id" => $todo->id,
+        ])
+             ->assertStatus(200);
+
+        $this->assertDatabaseCount('todos', 0);
+    }
 }

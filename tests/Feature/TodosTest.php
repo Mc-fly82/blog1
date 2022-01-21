@@ -30,7 +30,7 @@ class TodosTest extends TestCase
     {
         $this->postJson('todos/create', [
             "tache" => "aller a l'ecole",
-        ])->assertStatus(200);
+        ])->assertStatus(302);
 
         $this->assertDatabaseCount('todos', 1);
         $this->assertDatabaseHas('todos', [

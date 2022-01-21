@@ -26,8 +26,10 @@ Route::post('todos/create', function () {
         "tache" => request()->tache,
         "status" => "todo",
     ]);
+
     $todos = Todo::all();
-    return view('welcome')->with("todos", $todos);
+    return back()->with("todos", $todos);
+
 })->name("todos.create");
 
 Route::post('todos/update', function () {
@@ -40,7 +42,7 @@ Route::post('todos/update', function () {
 
     $todos = Todo::all();
 
-    return view('welcome')->with("todos", $todos);
+    return back()->with("todos", $todos);
 })
      ->name("todos.update");
 
